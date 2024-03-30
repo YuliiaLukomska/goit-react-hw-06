@@ -12,21 +12,34 @@ const contactsSlice = createSlice({
   name: "contacts",
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
-  // Об'єкт редюсерів
+  // Об'єкт редюсерів. Виконують логіку зміни стану.
   reducers: {
     addContact(state, action) {
       //   push це мутабельна зміна масиву, тому ретьорн нетреба
       state.items.push(action.payload);
     },
     deleteContact(state, action) {
-      // filter це іммутабельний метод, він немутує масив, а створює новий масив. Тому нам треба цей масив повернути.
-      return state.items.filter((item) => item.id !== action.payload);
+      // filter це іммутабельний метод, він немутує масив, а просто створює новий масив. Тому цей новий масив треба присвоїти.
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
   },
 });
 
-// Генератори action-creators
+/* Генератори action-creators. Тут ми витягуємо функції, які згенерують команду. Саме вони будуть тригерити наші редюсери. 
+Під капотом тут приховані функції: Н-д функція deleteContact це:
+
+const deteleContactActionCreator = (payload) => {
+   return {
+   type: 'contacts/deleteContacts',
+   payload: payload,
+   };
+
+}; 
+Цю всю логіку приховує Redux Toolkit. Назви редюсерів мають співпадати з назвати витягнутих функцій екшн-кріейторів*/
+
 export const { addContact, deleteContact } = contactsSlice.actions;
 
 // Редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;
+
+export const selectContacts = (state) => state.items;

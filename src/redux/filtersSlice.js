@@ -11,12 +11,16 @@ const filtersSlice = createSlice({
   initialState: INITIAL_STATE,
   // Об'єкт редюсерів
   reducers: {
-    changeFilter(state, action) {},
+    changeFilter(state, action) {
+      state.name = action.payload;
+    },
   },
 });
 
 // Генератори action-creators
-export const {} = filtersSlice.actions;
+export const { changeFilter } = filtersSlice.actions;
 
 // Редюсер слайсу
 export const filtersReducer = filtersSlice.reducer;
+
+export const selectNameFilter = (state) => state.name;
