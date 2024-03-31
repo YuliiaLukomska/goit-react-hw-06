@@ -6,7 +6,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const INITIAL_STATE = {
   items: [],
 };
-
+// в reducers ми можемо писати мутабельний код, бо він все одно буде оброблений Immer.js, який в результаті зробить цей код іммутабельним.
 const contactsSlice = createSlice({
   // Ім'я слайсу
   name: "contacts",
@@ -42,4 +42,4 @@ export const { addContact, deleteContact } = contactsSlice.actions;
 // Редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;
 
-export const selectContacts = (state) => state.items;
+export const selectContacts = (state) => state.contacts.items;

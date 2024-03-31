@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { contactsReducer } from "./contactsSlice";
 import { filtersReducer } from "./filtersSlice";
-// у властивості reducer буде state нашого додатку
-// в редюсері ми можемо писати мутабельний код, бо він все одно буде оброблений Immer.js, який в результаті зробить цей код іммутабельним.
+// у властивості reducer буде весь state нашого додатку. І в цього стейта буде дві властивості: contacts і filters.
+
 const store = configureStore({
   reducer: {
     contacts: contactsReducer,

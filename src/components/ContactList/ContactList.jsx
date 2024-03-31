@@ -5,18 +5,16 @@ import { selectContacts } from "../../redux/contactsSlice";
 import { selectNameFilter } from "../../redux/filtersSlice";
 
 const getVisibleContacts = (contacts, filters) => {
-  if (contacts !== null) {
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filters.toLowerCase())
-    );
-  } else {
-    return;
-  }
+  return contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filters.toLowerCase())
+  );
 };
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
+
   const filters = useSelector(selectNameFilter);
+
   const visibleContacts = getVisibleContacts(contacts, filters);
 
   return (
