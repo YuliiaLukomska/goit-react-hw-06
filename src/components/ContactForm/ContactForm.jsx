@@ -29,8 +29,12 @@ const ContactForm = () => {
       ...data,
       id: nanoid(),
     };
+    /* в dispatch передаємо action-creator (який ми отримали зі слайсу), аргументом якого буде payload. 
+    Цей action-creator повертає об'єкт-інструкції.
+    Dispatch доставляє наш об'єкт-інструкції (action) до стору і до редюсерів(contactsSlice.js). Відповідний редюсер виконується і оновлює стан.
+    Поточний стан зберігається в store.js */
     dispatch(addContact(finalNewContact));
-    // addContacts(data);
+
     formActions.resetForm();
   };
 

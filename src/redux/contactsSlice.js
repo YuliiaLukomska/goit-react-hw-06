@@ -12,7 +12,7 @@ const contactsSlice = createSlice({
   name: "contacts",
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
-  // Об'єкт редюсерів. Виконують логіку зміни стану.
+  // Об'єкт редюсерів. Виконують логіку зміни стану, приймають state, це поточне значення стану та action - це об'єкт-інструкція, який повертає action-creator
   reducers: {
     addContact(state, action) {
       //   push це мутабельна зміна масиву, тому ретьорн нетреба
@@ -35,11 +35,11 @@ const deteleContactActionCreator = (payload) => {
    };
 
 }; 
-Цю всю логіку приховує Redux Toolkit. Назви редюсерів мають співпадати з назвати витягнутих функцій екшн-кріейторів*/
-
+Цю всю логіку приховує Redux Toolkit в слайсері. Назви редюсерів мають співпадати з назвати витягнутих функцій екшн-кріейторів*/
+// зі слайсу витягуємо екшн-кріейтори і будемо їх викор в dispatch.
 export const { addContact, deleteContact } = contactsSlice.actions;
 
-// Редюсер слайсу
+// Редюсер слайсу. Зі слайсу витягуємо редюсер, який ми використовуємо в store.js і який буде повертати поточний стан
 export const contactsReducer = contactsSlice.reducer;
-
+// створюємо функцію для отримання масиву items зі стану для подальшого використання цієї ф-ї як колбек ф-ї useSelector() - з метою отримання даних стейту в будь-якій частині додатку
 export const selectContacts = (state) => state.contacts.items;
