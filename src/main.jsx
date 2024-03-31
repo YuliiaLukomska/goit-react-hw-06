@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import "modern-normalize";
 import { Provider } from "react-redux";
-import store from "./redux/store.js";
+import store, { persistor } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 
 /*Додаток ініціалізується зверху вниз, спочатку дані проходять через Провайдер і в нього потрапляє INITIAL_STATE нашого стору. 
@@ -13,9 +13,9 @@ import { PersistGate } from "redux-persist/integration/react";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <PersistGate persistor={persistor} loading={null}>
-      {/* <React.StrictMode> */}
-      <App />
-      {/* </React.StrictMode> */}
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     </PersistGate>
   </Provider>
 );
