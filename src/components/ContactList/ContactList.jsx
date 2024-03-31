@@ -14,7 +14,9 @@ const ContactList = () => {
   const contacts = useSelector(selectContacts);
 
   const filters = useSelector(selectNameFilter);
-
+  /* при введені слова-фільтру в SearchBox, властивість contacts стану нашого додатка не змінюється, там як було н-д три контакти 
+  так і залишається, ми просто фільтруємо ці контакти за властивість contact.name і виводимо на екран вже відфільтрований 
+  список (бо саме його ми використовуємо для створення списку). */
   const visibleContacts = getVisibleContacts(contacts, filters);
 
   return (
